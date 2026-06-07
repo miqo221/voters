@@ -1,0 +1,135 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        background: transparent;
+      }
+      .overlay {
+        width: 500px;
+        background: linear-gradient(to top, #002b58, #0572e556);
+        padding: 14px 12px 16px 12px;
+        display: flex;
+        flex-direction: row;
+        align-items: stretch;
+        gap: 10px;
+        font-family: Arial, sans-serif;
+      }
+      .img-slot {
+        flex: 1;
+        display: flex;
+        align-items: stretch;
+        justify-content: center;
+
+      }
+      .img-slot img {
+        width: 200px;
+        object-fit: contain;
+        border-radius: 4px;
+        opacity: 0.9;
+      }
+      .stats-col {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        gap: 6px;
+      }
+      .label {
+        font-size: 10px;
+        color: #e0003a;
+        text-transform: uppercase;
+        letter-spacing: 0.6px;
+        line-height: 1;
+        font-weight: 700;
+      }
+      .number {
+        font-size: 18px;
+        font-weight: 700;
+        color: #fff;
+        line-height: 1.1;
+        letter-spacing: -0.3px;
+      }
+      .number.percent {
+        font-size: 26px;
+        font-weight: 700;
+        color: #fff;
+      }
+      .pct-sub {
+        font-size: 9px;
+        color: rgba(255, 255, 255, 0.5);
+        margin-top: 1px;
+      }
+      .divider {
+        width: 100%;
+        height: 0.5px;
+        background: rgba(255, 255, 255, 0.15);
+      }
+      .block {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+      }
+      .time-badge {
+        font-size: 9px;
+        color: rgba(255, 255, 255, 0.45);
+        letter-spacing: 0.5px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="overlay">
+      <div class="img-slot">
+        <img src="logo.svg" alt="logo" />
+      </div>
+
+      <div class="stats-col">
+        <div class="block">
+          <span class="label">ընտրողների ընդհանուր թիվ</span>
+          <span class="number">2,485,851</span>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="block" style="align-items: flex-start">
+          <span class="number percent" id="pct-num">0.00%</span>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="block">
+          <span class="time-badge" id="time-badge"></span
+        ></span>
+          <span class="label"
+            >քվեարկել է
+          <span class="number" id="voted-num">0</span>
+        քաղաքացի</div>
+      </div>
+    </div>
+
+    <script>
+      const TOTAL = 2485851;
+
+      const VOTED = 187917;
+      const HOUR = " 11:00";
+
+      function fmt(n) {
+        return n.toLocaleString("en-US");
+      }
+
+      const pct = ((VOTED / TOTAL) * 100).toFixed(2);
+      document.getElementById("voted-num").textContent = fmt(VOTED);
+      document.getElementById("pct-num").textContent = pct + "%";
+      document.getElementById("time-badge").textContent = HOUR
+        ? " ժամը" + HOUR + "-ի դրությամբ"
+        : "";
+    </script>
+  </body>
+</html>
